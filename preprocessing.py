@@ -56,4 +56,8 @@ def split_data_into_training_testing_validation():
 split_into_strata()
 split_data_into_training_testing_validation()
 
-print("")
+print("Num training images: " + str(len(training_images)))
+print("Num training labels: " + str(len(training_labels)))
+
+# print("Shape of training images" + str(training_images.shape))
+# print("Shape of training labels" + str(training_labels.shape))

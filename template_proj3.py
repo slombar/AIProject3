@@ -2,10 +2,11 @@ from tensorflow import keras
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 import numpy as np
+import preprocessing
 
 USE_SELU_SEQUENCE = True
-USE_RELU_SEQUENCE = True
-USE_TANH_SEQUENCE = True
+USE_RELU_SEQUENCE = False
+USE_TANH_SEQUENCE = False
 
 # Model Template
 
@@ -32,10 +33,6 @@ if USE_SELU_SEQUENCE:
     model.add(Dense(32, kernel_initializer='lecun_normal', activation='selu'))
     model.add(Dense(16, kernel_initializer='lecun_normal', activation='selu'))
 
-if USE_RELU_SEQUENCE:
-    model.add(Dense(16), kernel_initalizer='', activation='relu')
-    model.add(Dense(10), kernel_initalizer='', activation='relu')
-
 # End of model, don't change
 model.add(Dense(10, kernel_initializer='he_normal'))  # last layer
 model.add(Activation('softmax'))
@@ -46,12 +43,19 @@ model.compile(optimizer='sgd',
               metrics=['accuracy'])
 
 # Train Model
+"""
 history = model.fit(x_train, y_train,
                     validation_data=(x_val, y_val),
+                    epochs=10,
+                    batch_size=512)
+"""
+
+history = model.fit(x=preprocessing.training_images, y=preprocessing.training_labels,
+                    validation_data=(preprocessing.training_images, preprocessing.validation_labels),
                     epochs=10,
                     batch_size=512)
 
 # Report Results
 
 print(history.history)
-model.predict()
+model.predict(x=preprocessing.test_images)
