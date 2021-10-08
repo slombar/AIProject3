@@ -51,7 +51,7 @@ history = model.fit(x_train, y_train,
 """
 
 history = model.fit(x=preprocessing.training_images, y=preprocessing.training_labels,
-                    validation_data=(preprocessing.training_images, preprocessing.validation_labels),
+                    validation_data=(preprocessing.validation_images, preprocessing.validation_labels),
                     epochs=10,
                     batch_size=512)
 
