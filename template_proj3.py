@@ -50,12 +50,12 @@ history = model.fit(x_train, y_train,
                     batch_size=512)
 """
 
-history = model.fit(x=preprocessing.training_images, y=preprocessing.training_labels,
-                    validation_data=(preprocessing.validation_images, preprocessing.validation_labels),
+history = model.fit(x=preprocessing.np_training_images, y=preprocessing.np_training_labels,
+                    validation_data=(preprocessing.np_validation_images, preprocessing.np_validation_labels),
                     epochs=10,
                     batch_size=512)
 
 # Report Results
 
 print(history.history)
-model.predict(x=preprocessing.test_images)
+model.predict(x=preprocessing.np_test_images)
