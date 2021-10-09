@@ -3,8 +3,6 @@ import random
 import numpy
 import numpy as np
 from keras.utils.np_utils import to_categorical
-import preprocessing
-from matplotlib import pyplot as plot
 
 image_data = np.load('images.npy')
 label_data = np.load('labels.npy')
@@ -68,9 +66,14 @@ split_data_into_training_testing_validation()
 print("Num training images: " + str(len(training_images)))
 print("Num training labels: " + str(len(training_labels)))
 
+print(training_images[0])
+print(training_labels[0])
+
 
 np_training_images = np.asarray(training_images)
 np_training_labels = np.asarray(training_labels)
+
+print(np_training_images[0])
 
 np_validation_images = np.asarray(validation_images)
 np_validation_labels = np.asarray(validation_labels)

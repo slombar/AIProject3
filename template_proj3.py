@@ -4,7 +4,7 @@ from keras.layers import Dense, Activation
 import numpy as np
 import preprocessing
 
-USE_SELU_SEQUENCE = True
+USE_SELU_SEQUENCE = False
 USE_RELU_SEQUENCE = False
 USE_TANH_SEQUENCE = False
 
