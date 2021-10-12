@@ -66,10 +66,6 @@ split_data_into_training_testing_validation()
 print("Num training images: " + str(len(training_images)))
 print("Num training labels: " + str(len(training_labels)))
 
-print(training_images[0])
-print(training_labels[0])
-
-
 np_training_images = np.asarray(training_images)
 np_training_labels = np.asarray(training_labels)
 
@@ -80,6 +76,3 @@ np_validation_labels = np.asarray(validation_labels)
 
 np_test_images = np.asarray(test_images)
 np_test_labels = np.asarray(test_labels)
-
-# print("Shape of training images" + str(training_images.shape))
-# print("Shape of training labels" + str(training_labels.shape))

@@ -28,8 +28,8 @@ model.add(Dense(units=10, activation="selu", use_bias=False, kernel_initializer=
 # model.add(Dense(32, kernel_initializer='lecun_normal', activation='selu'))
 # model.add(Dense(16, kernel_initializer='lecun_normal', activation='selu'))
 
-model.add(Dense(200, kernel_initializer='random_normal', activation='relu'))
-model.add(Dense(200, kernel_initializer='random_normal', activation='sigmoid'))
+model.add(Dense(100, kernel_initializer='random_normal', activation='relu'))
+model.add(Dense(100, kernel_initializer='random_normal', activation='sigmoid'))
 
 # End of model, don't change
 model.add(Dense(10, kernel_initializer='he_normal'))  # last layer
@@ -56,4 +56,8 @@ history = model.fit(x=preprocessing.np_training_images, y=preprocessing.np_train
 # Report Results
 
 print(history.history)
+
+score = model.evaluate(preprocessing.np_test_images, preprocessing.np_test_labels, verbose=0)
+print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
+
 print(model.predict(x=preprocessing.np_test_images))
