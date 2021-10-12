@@ -28,7 +28,9 @@ model.add(Dense(units=10, activation="selu", use_bias=False, kernel_initializer=
 # model.add(Dense(32, kernel_initializer='lecun_normal', activation='selu'))
 # model.add(Dense(16, kernel_initializer='lecun_normal', activation='selu'))
 
-model.add(Dense(100, kernel_initializer='random_normal', activation='relu'))
+
+model.add(Dense(512, kernel_initializer='random_normal', activation='relu'))
+# model.add(Dense(100, kernel_initializer='random_normal', activation='selu'))
 model.add(Dense(100, kernel_initializer='random_normal', activation='sigmoid'))
 
 # End of model, don't change
@@ -50,8 +52,8 @@ history = model.fit(x_train, y_train,
 
 history = model.fit(x=preprocessing.np_training_images, y=preprocessing.np_training_labels,
                     validation_data=(preprocessing.np_validation_images, preprocessing.np_validation_labels),
-                    epochs=10,
-                    batch_size=512)
+                    epochs=50,
+                    batch_size=50)
 
 # Report Results
 
