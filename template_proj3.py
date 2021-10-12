@@ -4,10 +4,6 @@ from keras.layers import Dense, Activation
 import numpy as np
 import preprocessing
 
-USE_SELU_SEQUENCE = False
-USE_RELU_SEQUENCE = False
-USE_TANH_SEQUENCE = False
-
 # Model Template
 
 # Beginning of model, don't change:
@@ -29,9 +25,11 @@ model.add(Dense(units=10, activation="selu", use_bias=False, kernel_initializer=
                bias_constraint=''))
 """
 
-if USE_SELU_SEQUENCE:
-    model.add(Dense(32, kernel_initializer='lecun_normal', activation='selu'))
-    model.add(Dense(16, kernel_initializer='lecun_normal', activation='selu'))
+# model.add(Dense(32, kernel_initializer='lecun_normal', activation='selu'))
+# model.add(Dense(16, kernel_initializer='lecun_normal', activation='selu'))
+
+model.add(Dense(200, kernel_initializer='random_normal', activation='relu'))
+model.add(Dense(200, kernel_initializer='random_normal', activation='sigmoid'))
 
 # End of model, don't change
 model.add(Dense(10, kernel_initializer='he_normal'))  # last layer
@@ -58,4 +56,4 @@ history = model.fit(x=preprocessing.np_training_images, y=preprocessing.np_train
 # Report Results
 
 print(history.history)
-model.predict(x=preprocessing.np_test_images)
+print(model.predict(x=preprocessing.np_test_images))
