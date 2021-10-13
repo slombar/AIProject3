@@ -1,11 +1,11 @@
-from tensorflow import keras
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 import tensorflow as tf
-import numpy as np
 import preprocessing
 import matplotlib.pyplot as plt
 import seaborn as sns
+from PIL import Image
+import numpy as np
 
 NUM_LAYERS = 2
 NUM_NODES_PER_HIDDEN_LAYER = 50
@@ -54,12 +54,27 @@ print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 predictions = model.predict(x=preprocessing.np_test_images)
 conf_matrix = tf.math.confusion_matrix(labels=preprocessing.np_test_labels.argmax(axis=1),
                                        predictions=predictions.argmax(axis=1))
+newpredicts = predictions.argmax(axis=1)
+newtestlabels = preprocessing.np_test_labels.argmax(axis=1)
+storedMatricies = []
+
+for i in range(1000):
+    if newpredicts[i] != newtestlabels[i]:
+        storedMatricies.append(preprocessing.np_test_images[i])
+    if len(storedMatricies) == 3:
+        break
+
+# matrices to images
+for i in range(3):
+    plt.imshow(np.reshape(storedMatricies[i], (28, 28)), cmap="gray")
+    plt.show()
 
 accuracy = history.history['accuracy']
 val_accuracy = history.history['val_accuracy']
-epoch_array = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45,46,47,48,49,50]
+epoch_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+               29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 50]
 
-#plot
+# plot
 plt.plot(epoch_array, accuracy, val_accuracy)
 plt.ylabel('Accuracy & Validation Accuracy')
 plt.xlabel('Epochs')
@@ -113,3 +128,9 @@ print()
 print("Calculated Recall of Model: ")
 print(recall_list)
 
+# history,accuracy
+figure = plt.figure(figsize=(20, 20))
+sns.heatmap(conf_matrix, annot=True, cmap=plt.cm.Blues)
+plt.ylabel('True label')
+plt.xlabel('Predicted label')
+plt.show()
