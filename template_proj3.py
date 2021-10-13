@@ -1,5 +1,6 @@
 from keras.models import Sequential
 from keras.layers import Dense, Activation
+import keras
 import tensorflow as tf
 import preprocessing
 import matplotlib.pyplot as plt
@@ -127,10 +128,3 @@ print(precision_list)
 print()
 print("Calculated Recall of Model: ")
 print(recall_list)
-
-# history,accuracy
-figure = plt.figure(figsize=(20, 20))
-sns.heatmap(conf_matrix, annot=True, cmap=plt.cm.Blues)
-plt.ylabel('True label')
-plt.xlabel('Predicted label')
-plt.show()
