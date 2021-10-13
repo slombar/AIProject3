@@ -1,6 +1,7 @@
 from tensorflow import keras
 from keras.models import Sequential
 from keras.layers import Dense, Activation
+import tensorflow as tf
 import numpy as np
 import preprocessing
 
@@ -50,4 +51,7 @@ print(history.history)
 score = model.evaluate(preprocessing.np_test_images, preprocessing.np_test_labels, verbose=0)
 print(f'Test loss: {score[0]} / Test accuracy: {score[1]}')
 
-#print(model.predict(x=preprocessing.np_test_images))
+predictions = model.predict(x=preprocessing.np_test_images)
+conf_matrix = tf.math.confusion_matrix(labels=preprocessing.np_test_labels.argmax(axis=1), predictions=predictions.argmax(axis=1))
+
+print(conf_matrix)
