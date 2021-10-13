@@ -63,13 +63,8 @@ def split_data_into_training_testing_validation():
 split_into_strata()
 split_data_into_training_testing_validation()
 
-print("Num training images: " + str(len(training_images)))
-print("Num training labels: " + str(len(training_labels)))
-
 np_training_images = np.asarray(training_images)
 np_training_labels = np.asarray(training_labels)
-
-print(np_training_images[0])
 
 np_validation_images = np.asarray(validation_images)
 np_validation_labels = np.asarray(validation_labels)
